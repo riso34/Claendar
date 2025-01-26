@@ -79,7 +79,7 @@ fun NavDrawerView(
         Scaffold(
             topBar = {
                 TopAppBar(
-                    title = { Text("Navigation Drawer Example") },
+                    title = { Text("Calendar") },
                     navigationIcon = {
                         IconButton(onClick = {
                             scope.launch {

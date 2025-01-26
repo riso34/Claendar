@@ -23,6 +23,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     NavDrawerView { paddingValues ->
+                        FABView(paddingValues)
                     }
                 }
             }

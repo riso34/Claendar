@@ -40,7 +40,7 @@ import androidx.compose.ui.unit.dp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FABView(paddingValues: PaddingValues) {
+fun FABView() {
     var expanded by remember { mutableStateOf(false) } // ミニFABの展開状態
 
     Box(

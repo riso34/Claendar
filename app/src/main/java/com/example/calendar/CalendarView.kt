@@ -4,10 +4,12 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -35,7 +37,7 @@ import java.time.format.TextStyle
 import java.util.Locale
 
 @Composable
-fun CalendarCompose() {
+fun CalendarCompose(paddingValues: PaddingValues) {
     val currentMonth = remember { YearMonth.now() }
     val startMonth = remember { currentMonth.minusMonths(100) } // Adjust as needed
     val endMonth = remember { currentMonth.plusMonths(100) } // Adjust as needed
@@ -49,7 +51,9 @@ fun CalendarCompose() {
         firstDayOfWeek = firstDayOfWeek
     )
 
-    Column(modifier = Modifier.fillMaxSize()) {
+    Column(
+        modifier = Modifier.fillMaxSize().padding(paddingValues),
+    ) {
         HorizontalCalendar(
             state = state,
             monthHeader = { month ->

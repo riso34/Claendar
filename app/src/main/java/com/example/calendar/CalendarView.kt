@@ -6,13 +6,17 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -24,6 +28,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kizitonwose.calendar.compose.HorizontalCalendar
 import com.kizitonwose.calendar.compose.rememberCalendarState
@@ -51,9 +56,18 @@ fun CalendarCompose(paddingValues: PaddingValues) {
         firstDayOfWeek = firstDayOfWeek
     )
 
+    var displayMonth by remember { mutableStateOf(currentMonth) }
+
+    // カレンダー表示月が変更されたときに実行
+    LaunchedEffect(state.firstVisibleMonth) {
+        displayMonth = state.firstVisibleMonth.yearMonth
+    }
+
     Column(
         modifier = Modifier.fillMaxSize().padding(paddingValues),
     ) {
+        Text("${displayMonth.year} 年　${displayMonth.monthValue} 月", modifier = Modifier.padding(8.dp), style = MaterialTheme.typography.titleMedium)
+        HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
         HorizontalCalendar(
             state = state,
             monthHeader = { month ->
@@ -63,7 +77,6 @@ fun CalendarCompose(paddingValues: PaddingValues) {
             dayContent = {
                 Day(it, isSelected = selection == it) { clickDay ->
                     selection = clickDay
-                    Timber.d("clickDay: $clickDay")
                 }
             },
             monthBody = { _, content ->

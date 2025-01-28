@@ -1,5 +1,6 @@
 package com.example.calendar
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
@@ -26,6 +27,8 @@ import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
 
@@ -43,6 +46,7 @@ fun NavDrawerView(
                 Column(
                     modifier = Modifier.padding(horizontal = 16.dp)
                         .verticalScroll(rememberScrollState())
+                        //.background(Color.Gray)
                 ) {
                     Spacer(Modifier.height(12.dp))
                     Text("Drawer Title", modifier = Modifier.padding(16.dp), style = MaterialTheme.typography.titleLarge)
@@ -77,6 +81,7 @@ fun NavDrawerView(
         drawerState = drawerState
     ) {
         Scaffold(
+            modifier = Modifier.background(Color.Red),
             topBar = {
                 TopAppBar(
                     title = { Text("Calendar") },

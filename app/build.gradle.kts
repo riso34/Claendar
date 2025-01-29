@@ -57,9 +57,10 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation(libs.androidx.navigation.compose)
-    // The view calendar library for Android
-    implementation("com.kizitonwose.calendar:compose:2.6.1")
-    implementation("com.jakewharton.timber:timber:5.0.1")
-    implementation("androidx.compose.material:material-icons-extended:1.7.6")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")
+    implementation(libs.androidx.runtime.livedata)
+    implementation(libs.androidx.runtime.rxjava2)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.kizitonwose.calendar.compose)
+    implementation(libs.androidx.material.icons.extended)
+
 }

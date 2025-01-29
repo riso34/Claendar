@@ -35,7 +35,6 @@ import com.kizitonwose.calendar.compose.rememberCalendarState
 import com.kizitonwose.calendar.core.CalendarDay
 import com.kizitonwose.calendar.core.DayPosition
 import com.kizitonwose.calendar.core.firstDayOfWeekFromLocale
-import timber.log.Timber
 import java.time.DayOfWeek
 import java.time.YearMonth
 import java.time.format.TextStyle
@@ -49,6 +48,7 @@ fun CalendarCompose(paddingValues: PaddingValues) {
     val firstDayOfWeek = remember { firstDayOfWeekFromLocale() } // Available from the library
     var selection by remember { mutableStateOf<CalendarDay?>(null) }
 
+    // 表示カレンダーの状態を更新
     val state = rememberCalendarState(
         startMonth = startMonth,
         endMonth = endMonth,

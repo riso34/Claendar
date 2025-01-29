@@ -16,16 +16,16 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.outlined.AddTask
 import androidx.compose.material.icons.outlined.Edit
 import androidx.compose.material.icons.outlined.Menu
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.FabPosition
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -34,14 +34,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.compose.ui.unit.dp
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FABView() {
+fun FABView(viewModel: TaskViewModel = viewModel()) {
     var expanded by remember { mutableStateOf(false) } // ミニFABの展開状態
+    val showTaskDialog by viewModel.showTaskDialog.collectAsState()
 
     Box(
         modifier = Modifier
@@ -74,12 +75,25 @@ fun FABView() {
                     onClick = { /* Handle Create Event */ }
                 )
                 MiniFab(
-                    icon = Icons.Outlined.Menu,
+                    icon = Icons.Outlined.AddTask,
                     label = "Create Menu",
-                    onClick = { /* Handle Create Task */ }
+                    onClick = {
+                        expanded = false  // FABメニューを閉じる
+                        viewModel.onShowTaskDialog()  // タスク登録ダイアログを表示
+                    }
                 )
             }
         }
+    }
+
+    // タスク登録ダイアログ
+    if (showTaskDialog) {
+        TaskRegistrationDialog(
+            onDismiss = { viewModel.onDismissTaskDialog() },
+            onTaskAdd = { title, description, date ->
+                viewModel.addTask(title, description, date)
+            }
+        )
     }
 }
 

@@ -60,4 +60,6 @@ dependencies {
     // The view calendar library for Android
     implementation("com.kizitonwose.calendar:compose:2.6.1")
     implementation("com.jakewharton.timber:timber:5.0.1")
+    implementation("androidx.compose.material:material-icons-extended:1.7.6")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")
 }

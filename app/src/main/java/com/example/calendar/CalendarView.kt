@@ -2,6 +2,7 @@ package com.example.calendar
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -65,9 +66,11 @@ fun CalendarCompose(paddingValues: PaddingValues) {
 
     Column(
         modifier = Modifier.fillMaxSize().padding(paddingValues),
+        verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         Text("${displayMonth.year} 年　${displayMonth.monthValue} 月", modifier = Modifier.padding(8.dp), style = MaterialTheme.typography.titleMedium)
         HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
+        Spacer(modifier = Modifier.height(16.dp))
         HorizontalCalendar(
             state = state,
             monthHeader = { month ->

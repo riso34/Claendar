@@ -1,4 +1,4 @@
-package com.example.calendar
+package com.example.calendar.view
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -27,7 +27,6 @@ import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch

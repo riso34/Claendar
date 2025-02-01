@@ -1,11 +1,8 @@
-package com.example.calendar
+package com.example.calendar.view
 
-import android.app.TimePickerDialog
-import android.graphics.drawable.Icon
 import android.icu.util.Calendar
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
@@ -16,9 +13,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.AccessTime
-import androidx.compose.material.icons.outlined.EditCalendar
 import androidx.compose.material.icons.outlined.Keyboard
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -48,7 +43,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.calendar.viewModel.UserViewModel
 import java.time.LocalDateTime
+import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -145,7 +143,7 @@ fun TaskRegistrationDialog(
             onDateSelected = { dateMillis ->
                 if (dateMillis != null) {
                     selectedDate =
-                        LocalDateTime.ofEpochSecond(dateMillis / 1000, 0, java.time.ZoneOffset.UTC)
+                        LocalDateTime.ofEpochSecond(dateMillis / 1000, 0, ZoneOffset.UTC)
                 }
                 showDatePicker = false
             }

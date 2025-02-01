@@ -1,4 +1,4 @@
-package com.example.calendar
+package com.example.calendar.viewModel
 
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
